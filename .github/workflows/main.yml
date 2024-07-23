@@ -26,6 +26,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      #gerar tag de acordo com commit
+
       # Build a Docker image with the latest code changes
       - name: "Build docker image"
         run: docker build -t carllos166/nlw-devops-go:latest .
+
+      #logar n ocontainer registry
+      #enviar imagem após
