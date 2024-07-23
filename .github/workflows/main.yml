@@ -14,3 +14,6 @@ jobs:
       # Recuperar o código
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: "Build docker image"
+        run: docker build -t carllos166/nlw-devops-go:latest .
