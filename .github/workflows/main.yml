@@ -27,10 +27,17 @@ jobs:
         uses: actions/checkout@v4
 
       #gerar tag de acordo com commit
+      - name: Generate SHA
+        id: generate_sha
+        run: |
+          SHA=${GITHUB_SHA:0:7}
+          echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       # Build a Docker image with the latest code changes
       - name: "Build docker image"
-        run: docker build -t carllos166/nlw-devops-go:latest .
+        # Recuperar SHA pela ID do step responsável, outputs acessando a varíavel criada sha
+        run: docker build -t carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }} .
+        
 
       #logar n ocontainer registry
       #enviar imagem após
