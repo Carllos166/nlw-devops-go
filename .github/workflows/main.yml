@@ -6,7 +6,7 @@
 # Example:
 # This workflow can be used to automate the build and deployment of a Go application.
 # For example, if you have a Go application in the `main` branch of your repository,
-# this workflow will build a Docker image with the latest code changes and push it to a registry.
+# this workflow will build a Docker image with the latest code changes and push it to a registry. 
 
 name: CI
 
