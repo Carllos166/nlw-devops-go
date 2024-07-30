@@ -30,7 +30,7 @@ jobs:
     - name: Generate SHA
       id: generate_sha
       run: |
-        SHA=${GITHUB_SHA:0:7}
+        SHA=${echo GITHUB_SHA:0:7}
         echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       #logar n ocontainer registry
@@ -47,5 +47,5 @@ jobs:
         context: .
         push: true
         tags: |
-          carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }}, 
+          carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }}
           carllos166/nlw-devops-go:latest
