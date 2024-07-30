@@ -29,9 +29,7 @@ jobs:
       #gerar tag de acordo com commit
     - name: Generate SHA
       id: generate_sha
-      run: |
-        SHA=${GITHUB_SHA:0:7}
-        echo "sha=$SHA" >> $GITHUB_OUTPUT
+      run: echo "sha=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
 
       #logar n ocontainer registry
     - name: Login into the cointainer registry
@@ -39,15 +37,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    # Build a Docker image with the latest code changes
-    - name: "Build docker image"
-      # Recuperar SHA pela ID do step responsável, outputs acessando a varíavel criada sha
-      run: docker build -t carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }} .
-
-    #enviar imagem após
-    - name: "Push docker image"
-      run: |
-        docker push carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }}
-        docker tag carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }} carllos166/nlw-devops-go:latest
-        docker push carllos166/nlw-devops-go:latest
+    
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        tags: |
+          carllos166/nlw-devops-go:${{ steps.generate_sha.outputs.sha }}, 
+          carllos166/nlw-devops-go:latest
