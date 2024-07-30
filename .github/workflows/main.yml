@@ -29,7 +29,9 @@ jobs:
       #gerar tag de acordo com commit
     - name: Generate SHA
       id: generate_sha
-      run: echo "sha=${GITHUB_SHA:0:7}" >> $GITHUB_OUTPUT
+      run: |
+        SHA=${GITHUB_SHA:0:7}
+        echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       #logar n ocontainer registry
     - name: Login into the cointainer registry
@@ -37,6 +39,7 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
     
     - name: Build and push
       uses: docker/build-push-action@v6
