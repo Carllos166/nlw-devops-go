@@ -22,7 +22,6 @@ jobs:
 
     steps:
       # Recuperar o código
-      # Checkout the code in the repository
     - name: Checkout
       uses: actions/checkout@v4
 
