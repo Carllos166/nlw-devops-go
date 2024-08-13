@@ -26,4 +26,5 @@ Docker Compose is used in this project to define and run the Postgres database s
 
 ```bash
 docker-compose up --build -d 
+k3d cluster create nlw-journey --servers 2
 ```
