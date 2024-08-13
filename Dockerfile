@@ -10,7 +10,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 ### Download and verify Go modules
-## This step is not necessary since we're using a Go base image (golang:1.22.2-alpine)
+## This step is not necessary since we're using a Go base image (golang:1.22.2-alpine) 
 RUN go mod download && go mod verify
 
 ### Copy application code
